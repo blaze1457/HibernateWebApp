@@ -2,6 +2,7 @@ package com.ofs.matrimony.controller;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -31,12 +32,14 @@ public class UserController {
 		String response="";
 		JSONObject jsonObject = new JSONObject();
 		
-		//if(email.equalsIgnoreCase(user.getEmailid()) && pwd.equalsIgnoreCase(user.getId()))		{
+		String password = user.getUserPassword();
+		String emailid = user.getEmailid();
+		
+		if(emailid.equalsIgnoreCase(user.getEmailid()) && password.equalsIgnoreCase(user.getId()))		{
 		
 		jsonObject.put("Status", "Success");
-		jsonObject.put("name", user.getUserName());
-		jsonObject.put("email", user.getEmailid());
-		jsonObject.put("uid", user.getEmailid());
+		jsonObject.put("user_Id", user.getId());
+		jsonObject.put("emailid", user.getEmailid());
 		
 		response = jsonObject.toString();
 	
@@ -47,18 +50,16 @@ public class UserController {
 			response = jsonObject.toString();
 			
 		}*/
-		
+		}
 		return response;
+		
 	}
 	@Path("/add")
-	@GET
+	@POST
 	@Consumes("text/html")
 	@Produces("text/html")
-	public String addUser(
-			@QueryParam("user") User user		
-			)
-	{
-		//User user = new User();
+	public String addUser(User user)
+	{	
 	return userService.addUser(user);
 	}
 	

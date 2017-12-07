@@ -2,27 +2,32 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	id="WebApp_ID" version="2.5">
-	<display-name>HibernateWebApp</display-name>
-	<servlet>
-		<display-name>User</display-name>
-		<servlet-name>User</servlet-name>
-		<servlet-class>com.ofs.matrimony.controller</servlet-class>
-	</servlet>
-	<servlet>
-		<display-name>Success</display-name>
-		<servlet-name>Success</servlet-name>
-		<servlet-class>com.ofs.matrimony.controller.Success</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>User</servlet-name>
-		<url-pattern>/register</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Success</servlet-name>
-		<url-pattern>/Success</url-pattern>
-	</servlet-mapping>
-	<welcome-file-list>
-		<welcome-file>register.html</welcome-file>
-	</welcome-file-list>
+	id="WebApp_ID" version="2.5 ">
+ <welcome-file-list>
+ <welcome-file>login.html</welcome-file>
+ </welcome-file-list>
+ <servlet>
+ 
+	 <servlet-name>User</servlet-name>
+	 
+	 <servlet-class>com.ofs.matrimony.controller</servlet-class> 
+	 
+	 <init-param>
+	 <param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
+	 <param-value>com.ofs.matrimony.util.CORSFilter</param-value>
+	 </init-param>
+	 
+	 <init-param>
+	 <param-name>com.sun.jersey.config.property.packages</param-name>
+	 <param-value>com.ofs.matrimony</param-value>
+	 </init-param>
+	 
+ </servlet>
+ 
+ <servlet-mapping>
+ 
+ 	<servlet-name>user</servlet-name>
+ 	<url-pattern>/rest/*</url-pattern>
+ </servlet-mapping>
+ 
 </web-app>
